@@ -7,9 +7,9 @@ Useage
 ======
 
 import the markov class with:
-'''python
+```python
 from markov import markov
-'''
+```
 
 Samples
 =======
