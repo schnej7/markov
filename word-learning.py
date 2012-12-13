@@ -7,10 +7,12 @@ import py_compile
 
 depth = 5
 
+punc = [ '.', '?', '!' ]
+
 def clean( word ):
     bad_chars = []
     for letter in word.lower():
-        if (letter > 'z' or letter < 'a') and (letter != '.' and letter != '?' and letter != '!') :
+        if (letter > 'z' or letter < 'a') and letter not in punc:
             bad_chars.append( letter )
 
     for char in bad_chars:
@@ -30,9 +32,8 @@ def dump( filename ):
         if lines % 10 == 0:
             sys.stdout.write( '\r%d' % lines )
             sys.stdout.flush()
-        line = line.replace( '.', ' .')
-        line = line.replace( '?', ' ?')
-        line = line.replace( '!', ' !')
+        for char in punc:
+            line = line.replace( char, ' ' + char )
         prev_word = ['']
         for word in line.split(' '):
             word = clean(word)
@@ -88,9 +89,8 @@ def load( a_Markov, a_all_words, filename ):
         new_words.append( next_word )
 
     output = ' '.join(new_words)
-    output = output.replace( ' .', '.' )
-    output = output.replace( ' ?', '?' )
-    output = output.replace( ' !', '!' )
+    for char in punc:
+        output = output.replace( ' ' + char, char )
     print output
 
 if __name__ == '__main__':
