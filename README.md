@@ -28,7 +28,7 @@ Once the object is trained on all of your data, you simply use:
 Markov.predict( current )
 ```
 
-current is the nth item in the sequence and this function will return the n+1th item in the sequence or ```none``` if there is no data to base the decision off of.
+current is the nth item in the sequence and this function will return the n+1th item in the sequence or ```None``` if there is no data to base the decision off of.
 
 Samples
 =======
